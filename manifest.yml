@@ -1,5 +1,5 @@
 ---
 applications:
-- name:    git-insights
-  host:    git-insights
+- name:    jira-insights
+  host:    jira-insights
   memory:  128M
