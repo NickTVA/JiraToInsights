@@ -62,7 +62,7 @@ function parseEvent(request){
 
 
   var gitJson = request.body;
-  
+  /*
   //Issues
   if(gitJson.webhookEvent === 'jira:issue_created'){
 
@@ -177,7 +177,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  
+  */
   //Projects
 
   if(gitJson.webhookEvent === 'project_created'){
@@ -198,7 +198,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  
+  /*
   if(eventName === 'project_updated'){
 
     insightEvent = {
@@ -236,7 +236,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  
+  */
 
 
   console.log( '---------------- EventName: ');
