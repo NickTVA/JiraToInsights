@@ -401,7 +401,7 @@ function parseEvent(request){
   console.log( '---------------- EventName: ' + eventName);
 
   insightEvent = {
-    eventType:'GITEvent',
+    eventType:'JIRAEvent',
     eventName: eventName,
 
     id:       gitJson.id,
