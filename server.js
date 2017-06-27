@@ -65,7 +65,10 @@ function parseEvent(request){
   insightEvent = {
     eventType:'JIRAEvent',
     issue: gitJson.issue,
-    webhookEvent: gitJson.webhookEvent
+    webhookEvent: gitJson.webhookEvent,
+    id: gitJson.id,
+    key: gitJson.key
+
   }
 
   return insightEvent;
