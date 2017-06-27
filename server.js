@@ -64,7 +64,8 @@ function parseEvent(request){
 
   insightEvent = {
     eventType:'JIRAEvent',
-    issue: gitJson.issue
+    issue: gitJson.issue,
+    webhookEvent: gitJson.webhookEvent
   }
 
   return insightEvent;
@@ -397,8 +398,7 @@ function parseEvent(request){
   console.log( '---------------- EventName: ');
 
   insightEvent = {
-    eventType:'GITEvent',
-    issue: gitJson.issue
+    eventType:'GITEvent'
 
     /*eventName: eventName,
 
