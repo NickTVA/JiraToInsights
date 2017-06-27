@@ -73,6 +73,83 @@ function parseEvent(request){
       eventName: 'Created',
       webhookEvent: gitJson.webhookEvent,
 
+      key: gitJson.issue.key,
+      id: gitJson.issue.id,
+      description: gitJson.issue.fields.description,
+      projectName: gitJson.issue.fields.project.name
+
+    }
+
+    return insightEvent;
+  }
+
+  if(eventName === 'jira:issue_updated'){
+
+    insightEvent = {
+
+      eventType: 'JIRAEvent',
+      eventObject: 'Issue',
+      eventName: 'Updated',
+      webhookEvent: gitJson.webhookEvent,
+
+      key: gitJson.issue.key,
+      id: gitJson.issue.id,
+      description: gitJson.issue.fields.description,
+      projectName: gitJson.issue.fields.project.name
+
+    }
+
+    return insightEvent;
+  }
+  
+  if(eventName === 'jira:issue_deleted'){
+
+    insightEvent = {
+
+      eventType: 'JIRAEvent',
+      eventObject: 'Issue',
+      eventName: 'Deleted',
+      webhookEvent: gitJson.webhookEvent,
+
+      key: gitJson.issue.key,
+      id: gitJson.issue.id,
+      description: gitJson.issue.fields.description,
+      projectName: gitJson.issue.fields.project.name
+
+    }
+
+    return insightEvent;
+  }
+
+  if(eventName === 'jira:worklog_updated'){
+
+    insightEvent = {
+
+      eventType: 'JIRAEvent',
+      eventObject: 'Issue',
+      eventName: 'Worklog Updated',
+      webhookEvent: gitJson.webhookEvent,
+
+      key: gitJson.issue.key,
+      id: gitJson.issue.id,
+      description: gitJson.issue.fields.description,
+      projectName: gitJson.issue.fields.project.name
+
+    }
+
+    return insightEvent;
+  }
+
+  //Comments
+  //need to test
+  if(eventName === 'comment_created'){
+
+    insightEvent = {
+
+      eventType: 'JIRAEvent',
+      eventName: 'Comment Created',
+      webhookEvent: gitJson.webhookEvent,
+
       issueKey: gitJson.issue.key,
       issueId: gitJson.issue.id,
       issueDescription: gitJson.issue.fields.description,
@@ -82,99 +159,24 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  /*
-    if(eventName === 'jira:issue_updated'){
 
-      insightEvent = {
+  if(eventName === 'comment_updated'){
 
-        eventType: 'JIRAEvent',
-        eventName: 'Issue Updated',
-        webhookEvent: gitJson.webhookEvent,
+    insightEvent = {
 
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
+      eventType: 'JIRAEvent',
+      eventName: 'Comment Updated',
+      webhookEvent: gitJson.webhookEvent,
 
-      }
+      issueKey: gitJson.issue.key,
+      issueId: gitJson.issue.id,
+      issueDescription: gitJson.issue.fields.description,
+      issueProject: gitJson.issue.fields.project.name
 
-      return insightEvent;
-    }
-    
-    if(eventName === 'jira:issue_deleted'){
-
-      insightEvent = {
-
-        eventType: 'JIRAEvent',
-        eventName: 'Issue Deleted',
-        webhookEvent: gitJson.webhookEvent,
-
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
-
-      }
-
-      return insightEvent;
     }
 
-    if(eventName === 'jira:worklog_updated'){
-
-      insightEvent = {
-
-        eventType: 'JIRAEvent',
-        eventName: 'Worklog Updated',
-        webhookEvent: gitJson.webhookEvent,
-
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
-
-      }
-
-      return insightEvent;
-    }
-
-    //Comments
-    //need to test
-    if(eventName === 'comment_created'){
-
-      insightEvent = {
-
-        eventType: 'JIRAEvent',
-        eventName: 'Comment Created',
-        webhookEvent: gitJson.webhookEvent,
-
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
-
-      }
-
-      return insightEvent;
-    }
-
-    if(eventName === 'comment_updated'){
-
-      insightEvent = {
-
-        eventType: 'JIRAEvent',
-        eventName: 'Comment Updated',
-        webhookEvent: gitJson.webhookEvent,
-
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
-
-      }
-
-      return insightEvent;
-    }
-  */
+    return insightEvent;
+  }
   
   //Projects
 
@@ -187,52 +189,54 @@ function parseEvent(request){
       eventName: 'Created',
       webhookEvent: gitJson.webhookEvent,
 
-      projectKey: gitJson.project.key,
-      projectId: gitJson.project.id,
-      projectDescription: gitJson.project.description,
-      projectUrl: gitJson.project.name
+      key: gitJson.project.key,
+      id: gitJson.project.id,
+      description: gitJson.project.description,
+      url: gitJson.project.name
 
     }
 
     return insightEvent;
   }
-  /*
-    if(eventName === 'project_updated'){
+  
+  if(eventName === 'project_updated'){
 
-      insightEvent = {
+    insightEvent = {
 
-        eventType: 'JIRAEvent',
-        eventName: 'Project Updated',
-        webhookEvent: gitJson.webhookEvent,
+      eventType: 'JIRAEvent',
+      eventObject: 'Project',
+      eventName: 'Updated',
+      webhookEvent: gitJson.webhookEvent,
 
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
+      key: gitJson.project.key,
+      id: gitJson.project.id,
+      description: gitJson.project.description,
+      url: gitJson.project.name
 
-      }
-
-      return insightEvent;
     }
 
-    if(eventName === 'project_deleted'){
+    return insightEvent;
+  }
 
-      insightEvent = {
+  if(eventName === 'project_deleted'){
 
-        eventType: 'JIRAEvent',
-        eventName: 'Project Deleted',
-        webhookEvent: gitJson.webhookEvent,
+    insightEvent = {
 
-        issueKey: gitJson.issue.key,
-        issueId: gitJson.issue.id,
-        issueDescription: gitJson.issue.fields.description,
-        issueProject: gitJson.issue.fields.project.name
+      eventType: 'JIRAEvent',
+      eventObject: 'Project',
+      eventName: 'Deleted',
+      webhookEvent: gitJson.webhookEvent,
 
-      }
+      key: gitJson.project.key,
+      id: gitJson.project.id,
+      description: gitJson.project.description,
+      url: gitJson.project.name
 
-      return insightEvent;
     }
-  */
+
+    return insightEvent;
+  }
+  
 
 
   console.log( '---------------- EventName: ');
