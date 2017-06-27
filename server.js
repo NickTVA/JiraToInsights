@@ -64,10 +64,12 @@ function parseEvent(request){
 
   insightEvent = {
     eventType:'JIRAEvent',
-    issue: gitJson.issue,
+    //issue: gitJson.issue,
     webhookEvent: gitJson.webhookEvent,
-    id: gitJson.id,
-    key: gitJson.key
+    //id: gitJson.id,
+    //key: gitJson.key,
+    jsonText: gitJson,
+    jsonText1: JSON.stringify(gitJson)
 
   }
 
