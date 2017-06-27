@@ -1,5 +1,5 @@
 {
-  "name": "jira-insights",
+  "name": "git-insights",
   "version": "0.0.0",
   "dependencies": {
     "@newrelic/native-metrics": "^2.1.1",
