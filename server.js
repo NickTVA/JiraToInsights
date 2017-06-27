@@ -69,7 +69,7 @@ function parseEvent(request){
     insightEvent = {
 
       eventType: 'JIRAEvent',
-      eventObject: 'Issue'
+      eventObject: 'Issue',
       eventName: 'Created',
       webhookEvent: gitJson.webhookEvent,
 
@@ -183,7 +183,7 @@ function parseEvent(request){
     insightEvent = {
 
       eventType: 'JIRAEvent',
-      eventObject: 'Project'
+      eventObject: 'Project',
       eventName: 'Created',
       webhookEvent: gitJson.webhookEvent,
 
