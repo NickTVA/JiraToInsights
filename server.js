@@ -63,9 +63,10 @@ function parseEvent(request){
   var gitJson = request.body;
 
   insightEvent = {
-    eventType:'GITEvent', 
+    eventType:'JIRAEvent',
+    issue: gitJson.issue
   }
-  
+
   return insightEvent;
 /*
   if(eventName === 'push'){
@@ -397,6 +398,8 @@ function parseEvent(request){
 
   insightEvent = {
     eventType:'GITEvent',
+    issue: gitJson.issue
+
     /*eventName: eventName,
 
     action:       gitJson.action,
