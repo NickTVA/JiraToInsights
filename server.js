@@ -57,10 +57,17 @@ function parseEvent(request){
   var headers = request.headers;
 
   //GIT event type as declared by GIT
-  var eventName = headers['x-github-event'];
+  //var eventName = headers['x-github-event'];
+
 
   var gitJson = request.body;
 
+  insightEvent = {
+      eventType:'GITEvent', 
+    }
+    return insightEvent;
+  }
+/*
   if(eventName === 'push'){
 
     insightEvent = {
@@ -385,12 +392,12 @@ function parseEvent(request){
   if(eventName === 'gollum'){
     return null;
   }
-
-  console.log( '---------------- EventName: ' + eventName);
+*/
+  console.log( '---------------- EventName: ');
 
   insightEvent = {
     eventType:'GITEvent',
-    eventName: eventName,
+    /*eventName: eventName,
 
     action:       gitJson.action,
 
@@ -414,7 +421,7 @@ function parseEvent(request){
     repositoryOpenIssues:     gitJson.repository.open_issues_count,
     repositoryDefaultBranch:  gitJson.repository.default_branch,
     repositoryMasterBranch:   gitJson.repository.master_branch
-
+  */
   }
 
   return insightEvent;
