@@ -68,7 +68,9 @@ function parseEvent(request){
     webhookEvent: gitJson.webhookEvent,
     sampleEvent: gitJson.event,
     issueKey: gitJson.issue.key,
-    issueId: gitJson.issue.id
+    issueId: gitJson.issue.id,
+    description: gitJson.issue.description,
+    project: gitJson.issue.project.name
     //id: gitJson.id,
     //key: gitJson.key,
     //jsonText: gitJson,
