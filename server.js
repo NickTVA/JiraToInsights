@@ -61,7 +61,7 @@ function parseEvent(request){
 
   var jiraJson = request.body;
 
-  if(eventName === 'issue'){
+  if(eventName === 'jira:issue_created'){
 
     insightEvent = {
       eventType:'JIRAEvent',
