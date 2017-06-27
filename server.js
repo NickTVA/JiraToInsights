@@ -66,10 +66,13 @@ function parseEvent(request){
     eventType:'JIRAEvent',
     //issue: gitJson.issue,
     webhookEvent: gitJson.webhookEvent,
+    sampleEvent: gitJson.event,
+    issueKey: gitJson.issue.key,
+    issueId: gitJson.issue.id
     //id: gitJson.id,
     //key: gitJson.key,
-    jsonText: gitJson,
-    jsonText1: JSON.stringify(gitJson)
+    //jsonText: gitJson,
+    //jsonText1: JSON.stringify(gitJson)
 
   }
 
