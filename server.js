@@ -58,13 +58,13 @@ function parseEvent(request){
 
   //GIT event type as declared by GIT
   //var eventName = headers['x-github-event'];
-  var eventName = gitJson.webhookEvent
+  //var eventName = gitJson.webhookEvent
 
 
   var gitJson = request.body;
   
   //Issues
-  if(eventName === 'jira:issue_created'){
+  if(gitJson.webhookEvent === 'jira:issue_created'){
 
     insightEvent = {
 
@@ -177,7 +177,7 @@ function parseEvent(request){
   
   //Projects
 
-  if(eventName === 'project_created'){
+  if(gitJson.webhookEvent === 'project_created'){
 
     insightEvent = {
 
