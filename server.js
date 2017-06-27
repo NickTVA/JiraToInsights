@@ -73,9 +73,9 @@ function parseEvent(request){
       eventName: 'Created',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.issue.key,
-      id: gitJson.issue.id,
-      description: gitJson.issue.fields.description,
+      issueKey: gitJson.issue.key,
+      issueId: gitJson.issue.id,
+      issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
 
     }
@@ -92,9 +92,9 @@ function parseEvent(request){
       eventName: 'Updated',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.issue.key,
-      id: gitJson.issue.id,
-      description: gitJson.issue.fields.description,
+      issueKey: gitJson.issue.key,
+      issueId: gitJson.issue.id,
+      issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
 
     }
@@ -111,9 +111,9 @@ function parseEvent(request){
       eventName: 'Deleted',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.issue.key,
-      id: gitJson.issue.id,
-      description: gitJson.issue.fields.description,
+      issueKey: gitJson.issue.key,
+      issueId: gitJson.issue.id,
+      issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
 
     }
@@ -130,9 +130,9 @@ function parseEvent(request){
       eventName: 'Worklog Updated',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.issue.key,
-      id: gitJson.issue.id,
-      description: gitJson.issue.fields.description,
+      issueKey: gitJson.issue.key,
+      issueId: gitJson.issue.id,
+      issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
 
     }
@@ -189,10 +189,10 @@ function parseEvent(request){
       eventName: 'Created',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.project.key,
-      id: gitJson.project.id,
-      description: gitJson.project.description,
-      url: gitJson.project.name
+      projectKey: gitJson.project.key,
+      projectId: gitJson.project.id,
+      projectDescription: gitJson.project.description,
+      projectUrl: gitJson.project.name
 
     }
 
@@ -208,10 +208,10 @@ function parseEvent(request){
       eventName: 'Updated',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.project.key,
-      id: gitJson.project.id,
-      description: gitJson.project.description,
-      url: gitJson.project.name
+      projectKey: gitJson.project.key,
+      projectId: gitJson.project.id,
+      projectDescription: gitJson.project.description,
+      projectUrl: gitJson.project.name
 
     }
 
@@ -227,10 +227,10 @@ function parseEvent(request){
       eventName: 'Deleted',
       webhookEvent: gitJson.webhookEvent,
 
-      key: gitJson.project.key,
-      id: gitJson.project.id,
-      description: gitJson.project.description,
-      url: gitJson.project.name
+      projectKey: gitJson.project.key,
+      projectId: gitJson.project.id,
+      projectDescription: gitJson.project.description,
+      projectUrl: gitJson.project.name
 
     }
 
