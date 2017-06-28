@@ -244,7 +244,7 @@ function parseEvent(request){
     return insightEvent;
   }
   */
-  if(eventName === 'project_updated'){
+  if(gitJson.webhookEvent === 'project_updated'){
 
     insightEvent = {
 
