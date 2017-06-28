@@ -76,6 +76,7 @@ function parseEvent(request){
       issueKey: gitJson.issue.key,
       issueUrl: gitJson.issue.self,
       issueId: gitJson.issue.id,
+      issueType: gitJson.issue.fields.issuetype.name,
       issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
 
@@ -224,7 +225,7 @@ function parseEvent(request){
   */
 
   //Projects
-  /*
+  
   if(gitJson.webhookEvent === 'project_created'){
 
     insightEvent = {
@@ -243,7 +244,8 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  */
+  
+  /*
   if(gitJson.webhookEvent === 'project_updated'){
 
     insightEvent = {
@@ -261,7 +263,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  /*
+  
   if(eventName === 'project_deleted'){
 
     insightEvent = {
