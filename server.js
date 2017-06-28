@@ -243,7 +243,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  /*
+  
   if(eventName === 'project_updated'){
 
     insightEvent = {
@@ -255,14 +255,13 @@ function parseEvent(request){
 
       projectKey: gitJson.project.key,
       projectId: gitJson.project.id,
-      projectDescription: gitJson.project.description,
       projectUrl: gitJson.project.name
 
     }
 
     return insightEvent;
   }
-
+  /*
   if(eventName === 'project_deleted'){
 
     insightEvent = {
