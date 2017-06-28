@@ -86,7 +86,7 @@ function parseEvent(request){
     return insightEvent;
   }
   
-  if(eventName === 'jira:issue_updated'){
+  if(gitJson.webhookEvent === 'jira:issue_updated'){
 
     insightEvent = {
 
