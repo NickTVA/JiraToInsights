@@ -74,6 +74,7 @@ function parseEvent(request){
       webhookEvent: gitJson.webhookEvent,
 
       issueKey: gitJson.issue.key,
+      issueUrl: gitJson.issue.self,
       issueId: gitJson.issue.id,
       issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
@@ -177,7 +178,51 @@ function parseEvent(request){
 
     return insightEvent;
   }
+  
+
+  //Sprints
+  //webhook mentioned but details no references in API docs
+  if(gitJson.webhookEvent === 'sprint_created'){
+
+    insightEvent = {
+
+      eventType: 'JIRAEvent',
+      eventObject: 'Sprint',
+      eventName: 'Created',
+      webhookEvent: gitJson.webhookEvent,
+
+      projectKey: gitJson.sprint.key,
+      projectId: gitJson.sprint.id,
+      projectDescription: gitJson.sprint.description,
+      projectUrl: gitJson.sprint.name
+
+    }
+
+    return insightEvent;
+  }
+
+  //Boards
+  //webhook mentioned but details no references in API docs
+  if(gitJson.webhookEvent === 'board_created'){
+
+    insightEvent = {
+
+      eventType: 'JIRAEvent',
+      eventObject: 'Board',
+      eventName: 'Created',
+      webhookEvent: gitJson.webhookEvent,
+
+      projectKey: gitJson.board.key,
+      projectId: gitJson.board.id,
+      projectDescription: gitJson.board.description,
+      projectUrl: gitJson.board.name
+
+    }
+
+    return insightEvent;
+  }
   */
+
   //Projects
 
   if(gitJson.webhookEvent === 'project_created'){
