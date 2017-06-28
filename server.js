@@ -77,6 +77,7 @@ function parseEvent(request){
       issueUrl: gitJson.issue.self,
       issueId: gitJson.issue.id,
       issueType: gitJson.issue.fields.issuetype.name,
+      issueStatus: gitJson.issue.status.statusCategory.name,
       issueDescription: gitJson.issue.fields.description,
       projectName: gitJson.issue.fields.project.name
 
