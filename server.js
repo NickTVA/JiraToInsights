@@ -17,7 +17,8 @@ var jsonParser = bodyParser.json();
 app.post("/insights/:accountNumber/key/:xinsertkey", jsonParser, function(request, response){
 
   //getting account Number from Path
-  var accountNumber = request.params['accountNumber'];
+  //var accountNumber = request.params['accountNumber'];
+  var accountNumber = request.params['accountNumber'].replace(/[^\w\s]/gi, '');
 
   //getting Key from Secret
   var xInsertKey = request.params['xinsertkey'];
@@ -62,9 +63,26 @@ function parseEvent(request){
 
 
   var gitJson = request.body;
-  
+  console.log(request.body);
+  //console.log(gitJson.issue.fields.priority);
+
+  var currdate = new Date();
+  //if(gitJson.issue == null) {
+    //console.log(request.body);
+    //return null;
+  //}
+
   //Issues
   if(gitJson.webhookEvent === 'jira:issue_created'){
+    var dateUpdated = new Date(gitJson.issue.fields.updated);
+    var dateCreated = new Date(gitJson.issue.fields.created);
+    //var labelArr = gitJson.issue.fields.labels;
+    //var componentsArr = gitJson.issue.fields.components;
+    var timeFromOpen = Math.abs(currdate - dateCreated);
+    var timeFromUpdate = Math.abs(currdate - dateUpdated);
+    var timeFromOpenHours = Math.ceil(timeFromOpen/ ( 1000*60*60 ));
+    var timeFromUpdateHours = Math.ceil(timeFromUpdate/ ( 1000*60*60 ));
+
 
     insightEvent = {
 
@@ -79,15 +97,32 @@ function parseEvent(request){
       issueType: gitJson.issue.fields.issuetype.name,
       issueStatus: gitJson.issue.fields.status.statusCategory.name,
       issueDescription: gitJson.issue.fields.description,
-      projectName: gitJson.issue.fields.project.name
-
+      issueSummary: gitJson.issue.fields.summary,
+      projectName: gitJson.issue.fields.project.name,
+      priority: gitJson.issue.fields.priority.name,
+      updated: gitJson.issue.fields.updated,
+      created: gitJson.issue.fields.created,
+      ... ((!Array.isArray(gitJson.issue.fields.components) || !gitJson.issue.fields.components.length || gitJson.issue.fields.components[0].name == undefined) ? {} : {component: gitJson.issue.fields.components[0].name}),
+      ... ((gitJson.issue.fields.labels == undefined) ? {} : {label1: gitJson.issue.fields.labels[0]}),
+      ... ((gitJson.issue.fields.labels == undefined) ? {} : {label2: gitJson.issue.fields.labels[0]}),
+      ... ((gitJson.customfield_10623 == undefined) ? {} : {assignedGroup: gitJson.customfield_10623}),
+      timeOpen: timeFromOpenHours,
+      timesinceUpdate: timeFromUpdateHours
     }
 
     return insightEvent;
   }
-  
+
   if(gitJson.webhookEvent === 'jira:issue_updated'){
 
+    var dateUpdated = new Date(gitJson.issue.fields.updated);
+    var dateCreated = new Date(gitJson.issue.fields.created);
+    //var labelArr = gitJson.issue.fields.labels;
+    //var componentsArr = gitJson.issue.fields.components;
+    var timeFromOpen = Math.abs(currdate - dateCreated);
+    var timeFromUpdate = Math.abs(currdate - dateUpdated);
+    var timeFromOpenHours = Math.ceil(timeFromOpen/ ( 1000*60*60 ));
+    var timeFromUpdateHours = Math.ceil(timeFromUpdate/ ( 1000*60*60 ));
     insightEvent = {
 
       eventType: 'JIRAEvent',
@@ -101,7 +136,17 @@ function parseEvent(request){
       issueType: gitJson.issue.fields.issuetype.name,
       issueStatus: gitJson.issue.fields.status.name,
       issueDescription: gitJson.issue.fields.description,
-      projectName: gitJson.issue.fields.project.name
+      issueSummary: gitJson.issue.fields.summary,
+      projectName: gitJson.issue.fields.project.name,
+      priority: gitJson.issue.fields.priority.name,
+      updated: gitJson.issue.fields.updated,
+      created: gitJson.issue.fields.created,
+      ... ((!Array.isArray(gitJson.issue.fields.components) || !gitJson.issue.fields.components.length || gitJson.issue.fields.components[0].name == undefined) ? {} : {component: gitJson.issue.fields.components[0].name}),
+      ... ((gitJson.issue.fields.labels == undefined) ? {} : {label1: gitJson.issue.fields.labels[0]}),
+      ... ((gitJson.issue.fields.labels == undefined) ? {} : {label2: gitJson.issue.fields.labels[0]}),
+      ... ((gitJson.customfield_10623 == undefined) ? {} : {assignedGroup: gitJson.customfield_10623}),
+      timeOpen: timeFromOpenHours,
+      timesinceUpdate: timeFromUpdateHours
 
     }
 
@@ -126,8 +171,8 @@ function parseEvent(request){
 
     return insightEvent;
   }
-
-  if(eventName === 'jira:worklog_updated'){
+*/
+  if(gitJson.webhookEvent === 'jira:worklog_updated'){
 
     insightEvent = {
 
@@ -145,7 +190,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-
+/*
   //Comments
   //need to test
   if(eventName === 'comment_created'){
@@ -183,7 +228,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  
+
 
   //Sprints
   //webhook mentioned but details no references in API docs
@@ -229,7 +274,7 @@ function parseEvent(request){
   */
 
   //Projects
-  
+
   if(gitJson.webhookEvent === 'project_created'){
 
     insightEvent = {
@@ -248,7 +293,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  
+
   /*
   if(gitJson.webhookEvent === 'project_updated'){
 
@@ -267,7 +312,7 @@ function parseEvent(request){
 
     return insightEvent;
   }
-  
+
   if(eventName === 'project_deleted'){
 
     insightEvent = {
